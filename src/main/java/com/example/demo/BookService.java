@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 @Service
 public class BookService {
-
     static ArrayList<Book> books = new ArrayList<>();
 
     static {
@@ -29,6 +28,11 @@ public class BookService {
 
         books.add(book1);
         books.add(book2);
+
+
+        for (int i = 0; i <5 ; i++ ){
+            books.add(new Book ( faker.book().title() , faker.number().numberBetween(100, 1250), "Russian",  faker.book().author() ));
+            ;       }
 
     }
 
