@@ -9,7 +9,7 @@ import java.util.Date;
 @Controller
 public class WebAppSandbox {
 
-    @RequestMapping("/holabetocomoestas")
+    @RequestMapping("/test")
     public String SandboxTest (){
 
         return "hello.html";
@@ -20,6 +20,7 @@ public class WebAppSandbox {
     public String gethome(Model model){
 
         model.addAttribute("todayDate", new Date().toString());
+
         return "home.html";
     }
 }

@@ -30,7 +30,7 @@ public class BookService {
         books.add(book2);
 
 
-        for (int i = 0; i <5 ; i++ ){
+        for (int i = 0; i <100 ; i++ ){
             books.add(new Book ( faker.book().title() , faker.number().numberBetween(100, 1250), "Russian",  faker.book().author() ));
             ;       }
 
