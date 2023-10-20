@@ -3,6 +3,8 @@ package com.example.demo;
 import com.github.javafaker.Faker;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.UUID;
 
 @Service
 public class BookService {
@@ -10,29 +12,16 @@ public class BookService {
 
     static {
 
-        Faker faker = new Faker();
-        Book book1 = new Book();
-        Book book2 = new Book();
-
-        String author1 = faker.book().author();
-        String title1 = faker.book().title();
-
-        String author2 = faker.book().author();
-        String title2 = faker.book().title();
-
-        book1.setAuthor(author1);
-        book1.setTitle(title1);
-
-        book2.setTitle(title2);
-        book2.setAuthor(author2);
-
-        books.add(book1);
-        books.add(book2);
-
+        // locale in english
+        Faker faker = new Faker(new Locale("en-GB"));
+        // ref variable creation UUID
+        String uniqueID;
 
         for (int i = 0; i <100 ; i++ ){
-            books.add(new Book ( faker.book().title() , faker.number().numberBetween(100, 1250), "Russian",  faker.book().author() ));
-            ;       }
+
+            uniqueID = UUID.randomUUID().toString();
+            books.add(new Book ( uniqueID, faker.book().title() , faker.number().numberBetween(100, 1250), "Russian",  faker.book().author() ));
+            }
 
     }
 
@@ -42,9 +31,44 @@ public class BookService {
         return books;
     }
 
+    public Book findBookById(String id) {
+
+        Book bookFound = null;
+
+        for (Book book : books) {
+            boolean checkBook = book.getId().equals(id);
+            if (checkBook)
+
+            {bookFound = book;
+              break;}
+
+        }
+
+
+        return bookFound;
+    }
+
     public void deleteAllBooks(){
         books.clear();
         //to-do delete all books with sql
+    }
+
+
+    public void deleteById(String id) {
+    }
+
+    public void deleteAllBoooks() {
+    }
+
+    public boolean  checkBookById (){
+
+        // check if book is in db
+
+        // if does not exist FALSE
+
+        // if exist TRUE
+
+        return true;
     }
 
 
